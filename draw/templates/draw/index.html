@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>P4 Drawing</title>
@@ -14,6 +15,7 @@
     </style>
 
 </head>
+
 <body>
     <!-- You may change the dimensions of this canvas -->
     <canvas id="myCanvas" width="750px" height="750px"></canvas>
@@ -21,6 +23,7 @@
 <script>
 
     // setting up the canvas and one paper tool
+    const screenSize = '{{size}}';
     var canvas = document.getElementById('myCanvas');
     paper.setup(canvas);
     var tool = new paper.Tool();
@@ -40,35 +43,38 @@
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
 
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-        socket.send(JSON.stringify({
-            'x': event.point.x,
-            'y': event.point.y,
-            'uid': uid,
-            'color': colorStr
-        }))
-    }
-
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        if(received.uid !== uid) {
-            if(!Object.keys(pathInfos).includes(received.uid.toString())) {
-                newPath = new paper.Path();
-                newPath.strokeColor = received.color;
-                pathInfos[received.uid] = newPath;
-            } else {
-                pathInfos[received.uid].add(received.x, received.y);
-            }
+    if (screenSize !== 'large') {
+        tool.onMouseMove = function (event) { //http://paperjs.org/reference/tool/ path examples
+            path.add(event.point);
+            // You may need to add code here if you want to pass any other information.
+            socket.send(JSON.stringify({
+                'x': event.point.x,
+                'y': event.point.y,
+                'uid': uid,
+                'color': colorStr
+            }))
         }
-        console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
+    } else {
+        socket.onmessage = function (receivedMessage) {
+            var received = JSON.parse(receivedMessage.data);
+            if (received.uid !== uid) {
+                if (!Object.keys(pathInfos).includes(received.uid.toString())) {
+                    newPath = new paper.Path();
+                    newPath.strokeColor = received.color;
+                    pathInfos[received.uid] = newPath;
+                } else {
+                    pathInfos[received.uid].add(received.x, received.y);
+                }
+            }
+            console.log("Received: " + JSON.stringify(received));
+            // You will probably want to add some code here to draw more lines.
+        }
     }
 
-    socket.onclose = function(e) {
+    socket.onclose = function (e) {
         console.error('Chat socket closed unexpectedly');
     };
 
 </script>
+
 </html>

@@ -2,7 +2,9 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'draw/index.html')
+    return render(request, 'draw/index.html', {
+        'size': request.GET.get('size', 'small')
+    })
 
 def room(request, room_name):
     return render(request, 'draw/room.html', {

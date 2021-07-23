@@ -25,8 +25,14 @@
     paper.setup(canvas);
     var tool = new paper.Tool();
     var path = new paper.Path();
+    var newPath;
     var uid = Date.now() % 10000;
-    path.strokeColor = "red";
+    const colors = ['#e6261f', '#eb7532', '#f7d038', '#a3e048', '#49da9a', '#34bbe6', '#4355db', '#d23be7'];
+    const colorStr = colors[uid % colors.length];
+    path.strokeColor = colorStr;
+    var pathInfos = {
+        [uid]: path
+    }
 
     // getting the URL (you may want to use for Exercise 3)
     var url = window.location.href;
@@ -40,13 +46,22 @@
         socket.send(JSON.stringify({
             'x': event.point.x,
             'y': event.point.y,
-            'uid': uid
+            'uid': uid,
+            'color': colorStr
         }))
     }
 
     socket.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
-        path.add(received.x, received.y);
+        if(received.uid !== uid) {
+            if(!Object.keys(pathInfos).includes(received.uid.toString())) {
+                newPath = new paper.Path();
+                newPath.strokeColor = received.color;
+                pathInfos[received.uid] = newPath;
+            } else {
+                pathInfos[received.uid].add(received.x, received.y);
+            }
+        }
         console.log("Received: " + JSON.stringify(received));
         // You will probably want to add some code here to draw more lines.
     }

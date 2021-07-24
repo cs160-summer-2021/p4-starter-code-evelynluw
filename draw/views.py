@@ -12,7 +12,7 @@ def room(request, room_name):
     })
 
 def recipe_small(request):
-    return render(request, 'recipe/recipe_small.html')
+    return render(request, 'recipe/smallone.html')
 
 def recipe_large(request):
     return render(request, 'recipe/recipe_large.html')

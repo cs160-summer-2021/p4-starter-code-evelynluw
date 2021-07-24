@@ -10,3 +10,9 @@ def room(request, room_name):
     return render(request, 'draw/room.html', {
         'room_name': room_name
     })
+
+def recipe_small(request):
+    return render(request, 'recipe/recipe_small.html')
+
+def recipe_large(request):
+    return render(request, 'recipe/recipe_large.html')

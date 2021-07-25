@@ -20,35 +20,20 @@
     <h1>Recipe Large</h1>
 </body>
 <script>
-    const screenSize = '{{size}}';
-    var uid = Date.now() % 10000;
-    var pathInfos = {
-        [uid]: path
-    }
-    var url = window.location.href;
-
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
 
-
-    socket.send(JSON.stringify({
-        'x': event.point.x,
-        'y': event.point.y,
-        'uid': uid,
-        'color': colorStr
-    }))
-
     socket.onmessage = function (receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
-        if (received.uid !== uid) {
-            if (!Object.keys(pathInfos).includes(received.uid.toString())) {
-                newPath = new paper.Path();
-                newPath.strokeColor = received.color;
-                pathInfos[received.uid] = newPath;
-            } else {
-                pathInfos[received.uid].add(received.x, received.y);
-            }
-        }
+        // if (received.uid !== uid) {
+        //     if (!Object.keys(pathInfos).includes(received.uid.toString())) {
+        //         newPath = new paper.Path();
+        //         newPath.strokeColor = received.color;
+        //         pathInfos[received.uid] = newPath;
+        //     } else {
+        //         pathInfos[received.uid].add(received.x, received.y);
+        //     }
+        // }
         console.log("Received: " + JSON.stringify(received));
     }
 

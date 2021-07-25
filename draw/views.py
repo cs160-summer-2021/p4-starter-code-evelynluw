@@ -11,8 +11,11 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-def recipe_small(request):
-    return render(request, 'recipe/recipe_small.html')
+def recipe_small_start(request):
+    return render(request, 'recipe/smallone.html')
+
+def recipe_small(request, page_num = 1):
+    return render(request, 'recipe/smalltwo.html')
 
 def recipe_large(request):
     return render(request, 'recipe/recipe_large.html')

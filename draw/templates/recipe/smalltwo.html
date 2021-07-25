@@ -2,268 +2,293 @@
 
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet" />
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
     <!-- <link href="./main.css" rel="stylesheet" /> -->
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}"
+    />
     <!-- <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script> -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-</head>
-<style type="text/css">
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <style type="text/css">
     * {
-        box-sizing: border-box;
+      box-sizing: border-box;
     }
 
     body {
-        font-size: 14px;
+      font-size: 14px;
     }
 
     .v2_18 {
-        width: 287px;
-        height: 538px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        overflow: hidden;
+      width: 287px;
+      height: 538px;
+      background: rgba(255, 255, 255, 1);
+      opacity: 1;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
     }
 
     .v2_30 {
-        width: 207px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 43px;
-        left: 44px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 207px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 43px;
+      left: 44px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v4_5 {
-        width: 212px;
-        height: 91px;
-        background: rgba(196, 196, 196, 1);
-        opacity: 1;
-        position: absolute;
-        top: 146px;
-        left: 37px;
-        overflow: hidden;
+      width: 212px;
+      height: 91px;
+      background: rgba(196, 196, 196, 1);
+      opacity: 1;
+      position: absolute;
+      top: 146px;
+      left: 37px;
+      overflow: hidden;
     }
 
     .v4_6 {
-        width: 198px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 155px;
-        left: 44px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 198px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 155px;
+      left: 44px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v4_9 {
-        width: 212px;
-        height: 91px;
-        background: rgba(196, 196, 196, 1);
-        opacity: 1;
-        position: absolute;
-        top: 266px;
-        left: 37px;
-        overflow: hidden;
+      width: 212px;
+      height: 91px;
+      background: rgba(196, 196, 196, 1);
+      opacity: 1;
+      position: absolute;
+      top: 266px;
+      left: 37px;
+      overflow: hidden;
     }
 
     .v4_10 {
-        width: 212px;
-        height: 91px;
-        background: rgba(196, 196, 196, 1);
-        opacity: 1;
-        position: absolute;
-        top: 394px;
-        left: 37px;
-        overflow: hidden;
+      width: 212px;
+      height: 91px;
+      background: rgba(196, 196, 196, 1);
+      opacity: 1;
+      position: absolute;
+      top: 394px;
+      left: 37px;
+      overflow: hidden;
     }
 
     .v4_11 {
-        width: 198px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 275px;
-        left: 44px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 198px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 275px;
+      left: 44px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v4_12 {
-        width: 198px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 403px;
-        left: 44px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 198px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 403px;
+      left: 44px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v2_27 {
-        width: 287px;
-        height: 538px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        overflow: hidden;
+      width: 287px;
+      height: 538px;
+      background: rgba(255, 255, 255, 1);
+      opacity: 1;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
     }
 
     .v2_49 {
-        width: 210px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 43px;
-        left: 40px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 210px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 43px;
+      left: 40px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v4_13 {
-        width: 206px;
-        height: 42px;
-        position: absolute;
-        top: 204px;
-        left: 38px;
-        border: 1px solid rgba(0, 0, 0, 1);
-        overflow: hidden;
+      width: 206px;
+      height: 42px;
+      position: absolute;
+      top: 204px;
+      left: 38px;
+      border: 1px solid rgba(0, 0, 0, 1);
+      overflow: hidden;
     }
 
     .v4_14 {
-        width: 198px;
-        color: rgba(0, 0, 0, 0.6299999952316284);
-        position: absolute;
-        top: 117px;
-        left: 46px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 18px;
-        opacity: 1;
-        text-align: center;
+      width: 198px;
+      color: rgba(0, 0, 0, 0.6299999952316284);
+      position: absolute;
+      top: 117px;
+      left: 46px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 18px;
+      opacity: 1;
+      text-align: center;
     }
 
     .v2_50 {
-        width: 192px;
-        color: rgba(0, 0, 0, 0.30000001192092896);
-        position: absolute;
-        top: 214px;
-        left: 45px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 14px;
-        opacity: 1;
-        text-align: center;
+      width: 192px;
+      color: rgba(0, 0, 0, 0.30000001192092896);
+      position: absolute;
+      top: 214px;
+      left: 45px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 14px;
+      opacity: 1;
+      text-align: center;
     }
 
     .name {
-        color: #fff;
+      color: #fff;
     }
 
     .v2_98 {
-        width: 212px;
-        height: 91px;
-        background: rgba(196, 196, 196, 1);
-        opacity: 1;
-        position: absolute;
-        top: 348px;
-        left: 39px;
-        overflow: hidden;
+      width: 212px;
+      height: 91px;
+      background: rgba(196, 196, 196, 1);
+      opacity: 1;
+      position: absolute;
+      top: 348px;
+      left: 39px;
+      overflow: hidden;
     }
 
     .v2_99 {
-        width: 198px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 375px;
-        left: 38px;
-        font-family: Nunito Sans;
-        font-weight: Bold;
-        font-size: 24px;
-        opacity: 1;
-        text-align: center;
+      width: 198px;
+      color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 375px;
+      left: 38px;
+      font-family: Nunito Sans;
+      font-weight: Bold;
+      font-size: 24px;
+      opacity: 1;
+      text-align: center;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <div class="v2_18" x-data="data">
-        <div id='qna-div' x-show="current < 3">
-            <span class="v2_30" x-text="qna[current].q"></span>
-            <div id="answer-0" class="v4_5 button" @click="handleClick"></div>
-            <span class="v4_6" x-text="qna[current].a[0]"></span>
-            <div id="answer-1" class="v4_9 button" @click="handleClick"></div>
-            <span class="v4_11" x-text="qna[current].a[1]"></span>
-            <div id="answer-2" class="v4_10 button" @click="handleClick"></div>
-            <span class="v4_12" x-text="qna[current].a[2]"></span>
-
+      <div id="qna-div" x-show="current < 3">
+        <span class="v2_30" x-text="qna[current].q"></span>
+        <div>
+          <div id="answer-0" class="v4_5 button" @click="handleClick"></div>
+          <span class="v4_6" x-text="qna[current].a[0]"></span>
         </div>
+        <div id="answer-1" class="v4_9 button" @click="handleClick"></div>
+        <span class="v4_11" x-text="qna[current].a[1]"></span>
+        <div id="answer-2" class="v4_10 button" @click="handleClick"></div>
+        <span class="v4_12" x-text="qna[current].a[2]"></span>
+      </div>
 
-        <div id='toppings-div' x-show="current === 3">
-            <div class="v2_27"><span class="v2_49">What toppings do you like? </span>
-                <span class="v4_14">separate them with commas. </span>
-                <!-- <div class="v4_13"></div> -->
-                <input id="ingredients-input" class="v4_13" type="text" name="ingredients"
-                    placeholder="sausage, pepperoni, onions">
-                <!-- <span class="v2_50">sausage, pepperoni, onions</span> -->
-                <div class="name"></div>
-                <div class="v2_98" @click="submit()"></div><span class="v2_99">Confirm</span>
-            </div>
+      <div id="toppings-div" x-show="current === 3">
+        <div class="v2_27">
+          <span class="v2_49">What toppings do you like? </span>
+          <span class="v4_14">separate them with commas. </span>
+          <!-- <div class="v4_13"></div> -->
+          <input
+            id="ingredients-input"
+            class="v4_13"
+            type="text"
+            name="ingredients"
+            placeholder="sausage, pepperoni, onions"
+          />
+          <!-- <span class="v2_50">sausage, pepperoni, onions</span> -->
+          <div class="name"></div>
+          <div class="v2_98" @click="submit()"></div>
+          <span class="v2_99">Confirm</span>
         </div>
+      </div>
 
-        <div x-show="current === 4">
-            <h1>Look at the big screen!</h1>
-        </div>
+      <div x-show="current === 4">
+        <h1>Look at the big screen!</h1>
+      </div>
     </div>
-</body>
-<script>
-    var info = []
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/draw');
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('data', () => ({
-            current: 0,
-            qna: [
-                { q: 'What kind of pizza crust do you prefer?', a: ['Thin Crust', 'NY Style Crust', 'Chicago Style Crust'] },
-                { q: 'What kind of sauce do you prefer?', a: ['Red sauce', 'White sauce', 'Pesto sauce'] },
-                { q: 'What is your favorite cheese?', a: ['Mozzarella', 'White cheddar', 'Parmesan'] }
-            ],
-            handleClick(e) {
-                var choice = parseInt(e.target.id.slice(-1))
-                info.push(choice)
-                this.current += 1;
-            },
-            submit() {
-                info.push(document.getElementById("ingredients-input").value);
-                console.log(info);
-                socket.send(JSON.stringify({
-                    'uid': Date.now() % 10000,
-                    'info': info
-                }))
-                this.current += 1;
-            }
-        }))
-    })
-</script>
-
+  </body>
+  <script>
+    var info = [];
+    var socket = new WebSocket("ws://" + window.location.host + "/ws/draw");
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("data", () => ({
+        current: 0,
+        qna: [
+          {
+            q: "What kind of pizza crust do you prefer?",
+            a: ["Thin Crust", "NY Style Crust", "Chicago Style Crust"],
+          },
+          {
+            q: "What kind of sauce do you prefer?",
+            a: ["Red sauce", "White sauce", "Pesto sauce"],
+          },
+          {
+            q: "What is your favorite cheese?",
+            a: ["Mozzarella", "White cheddar", "Parmesan"],
+          },
+        ],
+        handleClick(e) {
+          var choice = parseInt(e.target.id.slice(-1));
+          info.push(choice);
+          this.current += 1;
+        },
+        submit() {
+          info.push(document.getElementById("ingredients-input").value);
+          console.log(info);
+          socket.send(
+            JSON.stringify({
+              uid: Date.now() % 10000,
+              info: info,
+            })
+          );
+          this.current += 1;
+        },
+      }));
+    });
+  </script>
 </html>

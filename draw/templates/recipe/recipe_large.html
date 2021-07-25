@@ -5,36 +5,240 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Recipe - Small</title>
+    <title>P4 Recipe - Large</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style type="text/css">
     </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #izct {
+            text-align: center;
+            display: inherit;
+        }
+
+        #id3d {
+            text-align: center;
+        }
+
+        #ipkvw {
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 600;
+            font-family: Helvetica, serif;
+        }
+
+        #ii5ng {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #iuiiz {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #iuklj {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #i1urx {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #i8dqq {
+            font-size: 24px;
+        }
+
+        #ir3fu {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        #ij775 {
+            width: 359px;
+            height: 239.25px;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>Recipe Large</h1>
+<body x-data="data">
+    <!-- <h1>Recipe Large</h1> -->
+    <div class="row no-gutters" id="izct">
+        <h1 id="id3d"></h1>
+        <p id="ipkvw">Your Crowd Sourced Pizza</p>
+    </div>
+    <div class="row no-gutters">
+        <div class="col">
+            <figure class="figure"></figure>
+        </div>
+        <figure class="figure"><img
+                src="https://images.getbento.com/accounts/218d4ffbb37dd2996ba53d258951a956/media/images/38145CurryVeggieDelight.jpg?fit=max&amp;w=1800&amp;auto=format,compress"
+                id="ij775" class="img-fluid figure-img"></figure>
+        <div class="col">
+            <div class="accordion"></div>
+            <p id="ii5ng">Crust</p>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span>Thin Crust:</span>
+                    <span x-text="crust[0]"></span>
+                </li>
+                <li class="list-group-item">
+                    <span>NY Style</span>
+                    <span x-text="crust[1]"></span>
+                </li>
+                <li class="list-group-item">
+                    <span>Chicago</span>
+                    <span x-text="crust[2]"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="accordion"></div>
+            <p id="iuiiz">Sauce</p>
+            <ul class="list-group">
+                <li class="list-group-item"><span>Red:</span> <span x-text="sauce[0]"></span></li>
+                <li class="list-group-item"><span>White:</span> <span x-text="sauce[1]"></span></li>
+                <li class="list-group-item"><span>Pesto:</span> <span x-text="sauce[2]"></span></li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="accordion"></div>
+            <p id="iuklj">Cheese</p>
+            <ul class="list-group">
+                <li class="list-group-item"><span>Mozzarella: </span> <span x-text="cheese[0]"></span></li>
+                <li class="list-group-item"><span>Cheddar: </span> <span x-text="cheese[1]"></span></li>
+                <li class="list-group-item"><span>Paremsan: </span> <span x-text="cheese[2]"></span></li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="accordion"></div>
+            <p id="i1urx">Toppings</p>
+            <ul class="list-group">
+                <li class="list-group-item"><span x-text="getToppingsStr">sausage, pepperoni, onions</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="row no-gutters">
+        <div class="card">
+            <div class="card-header" id="i8dqq">
+                <div><strong>Ingredients</strong></div>
+            </div>
+            <ul class="list-group" x-show="received">
+                <li class="list-group-item"><span><br>1 bag of premade dough<br></span></li>
+                <li class="list-group-item"><span><br>1 Cup of <span x-text="getSauce"></span></span></li>
+                <li class="list-group-item"><span><br>1 Cup of <span x-text="getCheese"></span> Cheese<br></span>
+                </li>
+                <template x-for="topping in getToppings">
+                    <li class="list-group-item"><span x-text="topping"></span></li>
+                </template>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-header" id="ir3fu">Directions</div>
+            <div x-show="received">
+                <li class="list-group-item"><span><strong>Step 1: <span x-text="getCrust"></span><br></strong>
+                        <span x-text="getCrustRecipe"></span><br></span></li>
+                <li class="list-group-item"><span><strong>Step 2: Sauce</strong><br>Spread <span
+                            x-text="getSauce"></span> on the prepared dough.</span></li>
+                <li class="list-group-item"><span><strong>Step 3: Cheese</strong><br>Sprinkle <span
+                            x-text="getCheese"></span> on top of the sauce.</span></li>
+                <li class="list-group-item"><span><strong>Step 4: Toppings</strong><br>Put <span
+                            x-text="getToppingsStr"></span>
+                        on the pizza.</span></li>
+                <li class="list-group-item"><span><strong>Step 5: Bake!</strong><br>Bake in a preheated oven for 15
+                        to
+                        20 mins or until golden brown. Let it cool for 5 minutes before serving.<br></span></li>
+                <div class="card-body"></div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
-
+    const allCrusts = ['Thin Crust', 'NY Style Crust', 'Chicago Style Crust'];
+    const allSauces = ['Tomato Paste', 'Alfredo Sauce', 'Pesto Sauce'];
+    const allCheeses = ['Mozzarella', 'White cheddar', 'Parmesan'];
+    const allCrustRecipes = [
+        "Spread the premade dough in a circular motion on a pizza peel until the crust reaches a thickness of 1/4th of an inch.",
+        "Spread the premade dough in a circular motion on a pizza peel until the crust reaches a thickness of 1/2 of an inch.",
+        "Spread the premade dough in a circular motion in a cast iron pan until the crust reaches a thickness of 3/4th of an inch."
+    ]
+    var data = {
+        received: false,
+        crust: [0, 0, 0],
+        sauce: [0, 0, 0],
+        cheese: [0, 0, 0],
+        toppings: [],
+        get getCrust() {
+            return allCrusts[this.crust.indexOf(Math.max(...this.crust))];
+        },
+        get getSauce() {
+            return allSauces[this.sauce.indexOf(Math.max(...this.sauce))];
+        },
+        get getCheese() {
+            return allCheeses[this.cheese.indexOf(Math.max(...this.cheese))];
+        },
+        get getToppings() {
+            return this.toppings.map(name =>
+                name.charAt(0).toUpperCase() + name.slice(1)
+            );
+        },
+        get getToppingsStr() {
+            return this.getToppings.join(', ');
+        },
+        get getCrustRecipe() {
+            return allCrustRecipes[this.crust.indexOf(Math.max(...this.crust))];
+        }
+    }
+    document.addEventListener('alpine:init', () => {
+        data = Alpine.reactive(data);
+        Alpine.data('data', () => (data))
+    })
     socket.onmessage = function (receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
-        // if (received.uid !== uid) {
-        //     if (!Object.keys(pathInfos).includes(received.uid.toString())) {
-        //         newPath = new paper.Path();
-        //         newPath.strokeColor = received.color;
-        //         pathInfos[received.uid] = newPath;
-        //     } else {
-        //         pathInfos[received.uid].add(received.x, received.y);
-        //     }
-        // }
         console.log("Received: " + JSON.stringify(received));
+        console.log("type", typeof received.info);
+        data.received = true;
+        data.crust[received.info[0]]++;
+        data.sauce[received.info[1]]++;
+        data.cheese[received.info[2]]++;
+        receivedToppings = received.info[3].toLowerCase().split(', ');
+        console.log(receivedToppings);
+        if (data.toppings.length === 0) {
+            data.toppings = receivedToppings;
+        } else {
+            var set = new Set();
+            data.toppings.forEach(t => set.add(t));
+            receivedToppings.forEach(t => set.add(t));
+            data.toppings = Array.from(set);
+        }
     }
 
     socket.onclose = function (e) {

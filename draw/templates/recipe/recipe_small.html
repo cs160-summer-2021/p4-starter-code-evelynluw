@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Recipe - Small</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+    </style>
+
+</head>
+
+<body>
+    <h1>Recipe Small</h1>
+</body>
+<script>
+    const screenSize = '{{size}}';
+    var uid = Date.now() % 10000;
+    var pathInfos = {
+        [uid]: path
+    }
+    var url = window.location.href;
+
+    var socket = new WebSocket(
+        'ws://' + window.location.host + '/ws/draw');
+
+
+    socket.send(JSON.stringify({
+        'x': event.point.x,
+        'y': event.point.y,
+        'uid': uid,
+        'color': colorStr
+    }))
+
+    socket.onmessage = function (receivedMessage) {
+        var received = JSON.parse(receivedMessage.data);
+        if (received.uid !== uid) {
+            if (!Object.keys(pathInfos).includes(received.uid.toString())) {
+                newPath = new paper.Path();
+                newPath.strokeColor = received.color;
+                pathInfos[received.uid] = newPath;
+            } else {
+                pathInfos[received.uid].add(received.x, received.y);
+            }
+        }
+        console.log("Received: " + JSON.stringify(received));
+    }
+
+    socket.onclose = function (e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+</script>
+
+</html>
